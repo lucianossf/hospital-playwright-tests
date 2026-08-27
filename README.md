@@ -25,6 +25,9 @@ Automação E2E independente em Playwright e TypeScript para o [OpenEMR](https:/
 | @types/node | 26.4.0 |
 | Chrome for Testing | 151.0.7922.34 |
 | GitHub Actions | `ubuntu-latest` + Node.js 24 |
+| actions/checkout | v7 |
+| actions/setup-node | v7 |
+| actions/upload-artifact | v7 |
 
 As versões npm estão fixadas no `package-lock.json`. O campo `engines` exige Node.js 24.
 
