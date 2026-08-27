@@ -1,0 +1,33 @@
+name: Hospital Playwright Tests
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run typecheck
+      - run: npm run test:chromium
+        env:
+          HOSPITAL_BASE_URL: https://two.openemr.io/a/openemr
+          HOSPITAL_USERNAME: admin
+          HOSPITAL_PASSWORD: pass
+          HOSPITAL_PATIENT_SEARCH: Phil
+          HOSPITAL_PATIENT_NAME: Belford, Phil
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: hospital-playwright-report
+          path: playwright-report/
+          retention-days: 7
