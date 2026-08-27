@@ -120,7 +120,7 @@ Em falhas, a configuração retém trace, screenshot e vídeo para diagnóstico.
 | TC-108 | Navegação administrativa | Módulos operacionais visíveis no painel |
 | TC-109 | Pesquisa de paciente inexistente | Mensagem de nenhum registro exibida |
 | TC-110 | Filtros demográficos | Nome, telefone, CPF/SSN, nascimento e ID disponíveis |
-| TC-111 | Pesquisa demográfica exata | Opção de correspondência exata pode ser habilitada |
+| TC-111 | Pesquisa demográfica exata | Opção pode ser alternada e o estado original é restaurado |
 | TC-112 | Filtro da agenda | Seleção de profissionais disponível |
 
 ## Integração contínua
