@@ -16,3 +16,11 @@ test('TC-103 | deve localizar paciente de demonstração por dado demográfico',
     await patientFinderPage.expectDemographicColumns();
   });
 });
+
+test('TC-109 | deve informar quando nenhum paciente corresponde à pesquisa', async ({ page, dashboardPage }) => {
+  const patientFinderPage = new PatientFinderPage(page);
+
+  await dashboardPage.expectLoaded();
+  await patientFinderPage.search(hospitalPatient.missingSearchTerm);
+  await patientFinderPage.expectNoPatients();
+});
