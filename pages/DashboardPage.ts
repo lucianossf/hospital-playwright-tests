@@ -19,10 +19,24 @@ export class DashboardPage {
     await expect(this.page.getByRole('textbox', { name: 'Search by any demographics' })).toBeVisible();
   }
 
+  async expectOperationalModules(): Promise<void> {
+    for (const moduleName of ['Patient', 'Fees', 'Modules', 'Procedures', 'Admin', 'Reports', 'Miscellaneous', 'Popups']) {
+      await expect(this.page.getByRole('button', { name: moduleName, exact: true })).toBeVisible();
+    }
+  }
+
   async expectCalendarAvailable(): Promise<void> {
     const calendar = this.page.frameLocator('iframe[name="cal"]');
     await expect(calendar.getByRole('link', { name: 'Day', exact: true })).toBeVisible();
     await expect(calendar.getByRole('link', { name: 'Week', exact: true })).toBeVisible();
     await expect(calendar.getByRole('link', { name: 'Month', exact: true })).toBeVisible();
+  }
+
+  async expectCalendarProviderFilter(): Promise<void> {
+    const calendar = this.page.frameLocator('iframe[name="cal"]');
+    const providerSelector = calendar.getByRole('listbox');
+
+    await expect(providerSelector).toBeVisible();
+    await expect(providerSelector.getByRole('option', { name: 'All Users', exact: true })).toBeVisible();
   }
 }

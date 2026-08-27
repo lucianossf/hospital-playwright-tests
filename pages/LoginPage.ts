@@ -19,4 +19,14 @@ export class LoginPage {
     await expect(this.page.getByText(HOSPITAL_MESSAGES.invalidCredentials, { exact: true })).toBeVisible();
     await expect(this.page.getByRole('button', { name: 'Login', exact: true })).toBeVisible();
   }
+
+  async expectPasswordMasked(): Promise<void> {
+    await expect(this.page.getByLabel('Password', { exact: true })).toHaveAttribute('type', 'password');
+  }
+
+  async selectLanguage(language: string): Promise<void> {
+    const languageSelector = this.page.getByRole('combobox');
+    await languageSelector.selectOption({ label: language });
+    await expect(languageSelector.locator('option:checked')).toHaveText(language);
+  }
 }
