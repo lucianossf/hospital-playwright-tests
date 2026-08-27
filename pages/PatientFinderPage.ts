@@ -35,10 +35,17 @@ export class PatientFinderPage {
     }
   }
 
-  async enableExactSearch(): Promise<void> {
+  async expectExactSearchToggleable(): Promise<void> {
     const exactSearch = this.finderFrame.getByRole('checkbox', { name: 'Search with exact method', exact: true });
-    await expect(exactSearch).not.toBeChecked();
-    await exactSearch.check();
-    await expect(exactSearch).toBeChecked();
+    const initialState = await exactSearch.isChecked();
+
+    try {
+      await exactSearch.setChecked(!initialState);
+      await expect(exactSearch).toBeChecked({ checked: !initialState });
+    } finally {
+      await exactSearch.setChecked(initialState);
+    }
+
+    await expect(exactSearch).toBeChecked({ checked: initialState });
   }
 }
