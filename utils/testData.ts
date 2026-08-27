@@ -12,4 +12,5 @@ export const hospitalUsers = {
 export const hospitalPatient = {
   searchTerm: process.env.HOSPITAL_PATIENT_SEARCH ?? 'Phil',
   expectedName: process.env.HOSPITAL_PATIENT_NAME ?? 'Belford, Phil',
+  missingSearchTerm: 'NO-PATIENT-PLAYWRIGHT-99999',
 } as const;
