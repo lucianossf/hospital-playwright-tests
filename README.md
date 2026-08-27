@@ -8,7 +8,7 @@ Automação E2E independente em Playwright e TypeScript para o [OpenEMR](https:/
 
 ## Resultado validado
 
-- Execução local em Chromium: **4 testes aprovados**.
+- Execução local em Chromium: **12 testes aprovados**.
 - Validação TypeScript: **sem erros**.
 - Data da última validação: **27/08/2026**.
 - Estratégia: consultas não destrutivas, `workers: 1` e isolamento por contexto.
@@ -42,8 +42,11 @@ hospital-playwright-tests/
 │   ├── LoginPage.ts
 │   └── PatientFinderPage.ts
 ├── tests/
+│   ├── auth/login-validation.spec.ts
 │   ├── auth/login.spec.ts
 │   ├── calendar/calendar.spec.ts
+│   ├── navigation/modules.spec.ts
+│   ├── patients/patient-filters.spec.ts
 │   └── patients/patient-search.spec.ts
 ├── utils/
 │   ├── constants.ts
@@ -111,6 +114,14 @@ Em falhas, a configuração retém trace, screenshot e vídeo para diagnóstico.
 | TC-102 | Credenciais hospitalares inválidas | Login rejeitado |
 | TC-103 | Busca demográfica de paciente | Paciente fictício e colunas exibidos |
 | TC-104 | Abertura da agenda | Visões diária, semanal e mensal disponíveis |
+| TC-105 | Proteção visual da senha | Campo configurado como `password` |
+| TC-106 | Login com campos vazios | Autenticação rejeitada sem credenciais |
+| TC-107 | Seleção de idioma | Português brasileiro disponível e selecionável |
+| TC-108 | Navegação administrativa | Módulos operacionais visíveis no painel |
+| TC-109 | Pesquisa de paciente inexistente | Mensagem de nenhum registro exibida |
+| TC-110 | Filtros demográficos | Nome, telefone, CPF/SSN, nascimento e ID disponíveis |
+| TC-111 | Pesquisa demográfica exata | Opção de correspondência exata pode ser habilitada |
+| TC-112 | Filtro da agenda | Seleção de profissionais disponível |
 
 ## Integração contínua
 
